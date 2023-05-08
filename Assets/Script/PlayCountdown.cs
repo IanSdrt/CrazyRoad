@@ -34,12 +34,19 @@ public class PlayCountdown : MonoBehaviour
             }));
 
         sequence.Append(tmpText.transform.DOScale(
-            Vector3.zero,
+            Vector3.one,
             1).OnComplete(() => 
             {
                 tmpText.transform.localScale = Vector3.zero;
                 tmpText.text = "GO";
-                OnEnd.Invoke();
             }));
+
+            sequence.Append(tmpText.transform.DOScale(
+    Vector3.one,
+    1).OnComplete(() => 
+    {
+        tmpText.transform.localScale = Vector3.zero;
+        OnEnd.Invoke();
+    }));
     }
 }
